@@ -110,7 +110,8 @@ project(":jgr-r") {
     }
 
     distTar {
-        archiveName = "JGR_${version}.tar.gz"
+        baseName = "JGR"
+        version = null
         compression = Compression.GZIP
     }
 

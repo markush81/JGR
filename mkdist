@@ -12,10 +12,6 @@ sh gradlew build
 
 cd ${PDIR}
 
-cp /tmp/${PNAME}/jgr-r/build/distributions/${PNAME}_${VER}.tar.gz ..
+cp /tmp/${PNAME}/jgr-r/build/distributions/${PNAME}.tgz ../${PNAME}_${VER}.tar.gz
 echo "Done."
 ls -l ../${PNAME}_${VER}.tar.gz
-
-echo "Package content ..."
-tar tf ../${PNAME}_${VER}.tar.gz
-
