@@ -1,7 +1,23 @@
 #!/bin/sh
 PDIR=`pwd`
+
 rm -rf /tmp/${PNAME}
-mkdir /tmp/${PNAME} && cp -r . /tmp/${PNAME} && \
-cd /tmp && (find ${PNAME}/ -name .svn | xargs rm -rf) && \
-cd ${PNAME} && sh gradlew build && cd /tmp && \
+
+mkdir /tmp/${PNAME}
+
+cp -r . /tmp/${PNAME}
+
+cd /tmp
+
+find ${PNAME}/ -name .svn | xargs rm -rf
+
+cd ${PNAME}
+sh gradlew build
+
+cd /tmp
+
 cp ${PNAME}/jgr-r/build/distributions/${PNAME}_${VER}.tar.gz "${PDIR}/../${PNAME}_${VER}.tar.gz"
+
+echo "Done."
+
+ls -l ../${PNAME}_${VER}.tar.gz
