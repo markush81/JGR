@@ -1,0 +1,6 @@
+[submodule "REngine"]
+	path = REngine
+	url = https://github.com/s-u/REngine
+[submodule "rJava"]
+	path = rJava
+	url = https://github.com/s-u/rJava

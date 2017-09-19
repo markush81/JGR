@@ -1,0 +1,7 @@
+#!/bin/sh
+PDIR=`pwd`
+rm -rf /tmp/${PNAME}
+mkdir /tmp/${PNAME} && cp -r . /tmp/${PNAME} && \
+cd /tmp && (find ${PNAME}/ -name .svn | xargs rm -rf) && \
+cd ${PNAME} && sh gradlew build && cd /tmp && \
+find . -name JGR*tar.gz -exec cp {}  "${PDIR}/../" \;

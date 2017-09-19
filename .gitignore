@@ -1,0 +1,8 @@
+build
+out
+.gradle
+.iml
+.idea
+JGR.jar
+**/dist/R/JGR.R
+**/dist/DESCRIPTION

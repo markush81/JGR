@@ -1,0 +1,231 @@
+Change Log
+
+1.8-0 (under development)
+    o   moved to http://github.com/markush81/jgr
+    o   build R package with gradle, with one simple ./gradlew build
+    o   simple mkdist
+    o   ...
+
+1.7-18  (2017-09-11)
+    o   use ls(all=TRUE) to delete workspace
+
+1.7-17  (2015-01-20)
+    o   fixed REXPMissmatchExceptions thrown by refreshObjects
+    o   changed getting httpPort
+
+1.7-16  (2013-12-21)
+    o	Added launchJGR for JGR launcher 2.0 compatibility. This allows JGR to
+	be launched directly from R maintaining all environmental variables and
+	paths of all packages.
+    o	New Mac and Windows launchers.
+    o	JGR preferences no longer determine library paths. This had caused
+	problems with R upgrades.
+    o	DataTable menu item changed to Data Table.
+    o	Added JGR icon replacing the default Java icon in the Windows tray.
+    o	Removed nested border from console split pane, and added padding for the text.
+    o	Updated object browser to be organized by class, and have icons to bring
+	up contextual menus.
+    o	Added save support for data.frames in the Object Browser.
+
+1.7-15  (2013-05-10)
+    o	minor fixes for CRAN NOTEs
+    o	R 3.0.x adaptions
+
+1.7-11  (2012-09-16)
+    o   Adapt to JavaGD 0.6 release
+
+1.7-10  (2012-09-04)
+    o   New object browser
+    o   Moved many calls to R off the GUI eval thread and made them cancelable.
+    o   Console remembers last height and width.
+
+1.7-9   (2011-11-16)
+    o   fixed help search engine for R 2.14.x
+
+1.7-8   (2011-10-24)
+    o   Added support for loading xls and xlsx files
+    o   implemented temporary fix for infinite recursion crash on mac os x
+    o   new icon set (KDE Crystal)
+
+1.7-7   (2011-05-22)
+    o   fixed CRAN warnings
+
+1.7-6   (2011-05-21)
+    o   add check for old GOMP and warn on the command line if present
+
+1.7-5   (2011-03-20)
+    o	JGR() now launches new console on mac/windows
+
+1.7-4   (2011-01-02)
+    o	fixed issues with locating package paths
+    o	Added R code auto-formatting to Editor
+    o	In editor, run on an empty selection runs line and advances caret.
+    o	Added italic comment preference item
+    o	read.spss now uses to.data.frame=TRUE option
+
+1.7-3   (2010-10-09)
+    o   fixed escaping of characters
+
+1.7-2   (2010-09-24)
+    o   removed some deprecated functions
+    o   redirect Java stdout to JGR console
+    o   Fixed MacOS JavaGD resize deadlock bug
+    o   Added JavaGD save support for png, jpeg, bmp, and tiff
+    o   Added ability to insert new menus, menu items, separators,
+        and sub-menus. Menus and menu items can be removed.
+    o   Fixed 100% CPU on start-up bug
+    o   Cancel button fixed on unix systems
+    o   use rJava 0.8-6
+
+1.7-1   (2010-03-27)
+    o   use rJava 0.8-3
+
+1.7-0   (2009-10-28)
+    o   switched to REngine API (Callbacks are still RNI)
+    o   RPackageManager resizable
+    o   use rJava 0.8
+    o   preference to avoid "Save workspace dialog"
+    o   set working directory when opening workspace
+    o   JGRHelp is a fully used as browser (JGR now can only be used with R 2.10)
+
+1.6-8  (2009-08-20)
+    o   new rJava version
+
+1.6-7   (2009-06-10)
+    o   fixed version number
+
+1.6-6   (2009-06-08)
+    o   fixed editor file loading with multiple instances
+
+1.6-5   (2009-06-07)
+    o   new preference dialog
+    o   re-enabled help-agent in editor
+    o   fixed Load data dialog, when choosing own set name
+
+1.6-4	(2009-06-01)
+    o	added informative error message when JRI is missing
+    o	Fixed output buffering. Displaying large output to console is faster.
+    o   reactivated possibility to set dataset name when loading a datafile
+    o   Fixed "Open Recent" in Editor
+    o   Fixed "Clear Console" command
+    o   Restructured menu to be consistent with RGui
+    o   ObjectManager, PackageManager, PackageInstaller as singleton
+    o   Editor, Datatable with automatic placement
+
+1.6-3   (2009-02-07)
+    o   back and forward buttons in help browser remember page position
+    o   new datafile loader, which includes guessing of separator
+    o   some minor bugfixes/changes to the editor
+
+1.6-2	(2008-07-24)
+    o	Windows launcher now supports --libpath=xx and --rhome=xx
+	command line arguments to override the location of R (by
+	default taken from the registry) or the location of libraries
+	(default is R_HOME/library). In addition default stack
+	size has been increased to 512Mb and can be changed using
+	-Xmx.. argument.
+    o	Mac and Windows launchers no longer set R_DEFAULT_PACKAGES
+	but instead requested packages are loaded in JGR on startup.
+	This should make it easier to switch R versions.
+	(launcher version is now 1.61)
+    o   Unix start script will also no longer set R_DEFAULT_PACKAGES
+        at startup
+
+1.6-1  (2008-06-18)
+    o   fixed Editor close behavior using the framecross
+    o   fixed ObjectBrowser NullpointerException
+
+1.6-0  (2008-06-15)
+    o   load .JGRhistory from R working directory
+    o   new launchers -> JGR loads JGR R package itself
+
+1.5-18 (2008-04-15)
+    o   fixed menu in TextPager and JavaGD
+
+1.5-17 (2008-04-13)
+    o   fixed DataTable menu
+
+1.5-16 (2008-04-12)
+    o   real Swing Menu
+    o   add grDevices to default packages
+
+1.5-15 (2008-04-08)
+    o   fixed indentation and toggle comment
+
+1.5-14 (2008-04-04)
+    o   fixed fonttracker for editor
+    o   set always native look&feel
+    o   fixed printin line number
+    o   fixed meta+enter shortcut for running commands from editor
+
+1.5-13 (2008-03-31)
+    o   fixed fontsize bug, when changing fontsize in syntaxcoloring mode
+
+1.5-12 (2008-03-30)
+    o   r-dev compatible
+    o   fixed some more bugs related to linenumbers in editor
+
+1.5-11 (2008-03-27)
+    o   fixed text-selection using mouse
+
+1.5-10 (2008-03-23)
+    o   fixed about/rhelp in editor
+    o   added increase/decrease menuitems to Editor
+
+1.5-9  (2008-03-21)
+    o   editor: fixed overprinting linenumbers
+    o   added editor font managment to JGR preferences
+
+1.5-8   (2007-12-08)
+    o   fixed coloring in editor
+    o   fixed Code completion in editor
+    o   disabled "Help Agent" in editor for now (has to be newly developed)
+
+1.5-7   (2007-11-15)
+    o   fixed shortcuts for Windows
+
+1.5-6   (2007-10-19)
+    o   setwd on Windows Vista
+    o   don't show ~ in Editor
+    o   allow to use META+ENTER for executing R commands in editor
+
+1.5-5	(2007-09-04)
+    o	raise Java stack limit to 512MB (in the run script)
+    o   fixed "Load DataFile dialog" for Windows (Sun fixed a bug in Java)
+1.5-4   (2007-08-31)
+    o   fix closing Console window when select Cancel
+
+1.5-3	(2007-08-31)
+    o	fix escaping of . in command completion
+
+1.5-2   (2007-08-22)
+    o   print support for editor (b&w)
+
+    o	fix run script for rJava 0.5
+
+    o	make run script executable by default
+
+1.5-1   (2007-08-05)
+    o   java backend changes
+
+    o   new Editor based on JEDIT
+
+    o   JGR is running on Windows Vista
+
+1.4-17	(2007-05-29)
+    o	adapt to JRI API 1.8 change
+
+    o	make mkdist more portable (now works on Windows)
+
+1.4-16	(2007-04-24)
+    o	adapt to Sys.putenv change in R 2.5.0
+
+    o	prevent Java from setting LC_NUMERIC to a non-C default
+	which will break R (thanks to Frederik Elwert for testing)
+
+    o	fix incompatibilities of some shells in the run script
+	(thanks to Frederik Elwert for a crucial hint)
+
+    o	fix SVN properties on some files
+
+    o	add NEWS

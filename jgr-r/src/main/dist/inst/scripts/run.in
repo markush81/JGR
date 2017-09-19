@@ -1,0 +1,50 @@
+#!/bin/sh
+
+## JGR start script
+
+# loader version
+JGR_LOADER_VER=1.61
+
+R_SHARE_DIR="@R_SHARE_DIR@"
+export R_SHARE_DIR
+R_INCLUDE_DIR="@R_INCLUDE_DIR@"
+export R_INCLUDE_DIR
+R_DOC_DIR="@R_DOC_DIR@"
+export R_DOC_DIR
+
+R_HOME="@R_HOME@"
+
+JRI_LD_PATH="@RJAVA@/jri:${R_HOME}/lib:${R_HOME}/bin:@JAVA_LD_PATH@"
+if test -z "${LD_LIBRARY_PATH}"; then
+  LD_LIBRARY_PATH="${JRI_LD_PATH}"
+else
+  LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${JRI_LD_PATH}"
+fi
+JAVA="@JAVA_PROG@"
+
+if test -r "${HOME}/.JGRprefsrc"; then
+    libs=`sed -e s/'><'/'>\n<'/g < $HOME/.JGRprefsrc  | grep entry |  grep InitialRLibraryPath | sed -e s/.*InitialRLibraryPath.*value=\"// -e s/\".*$//g`
+    home=`sed -e s/'><'/'>\n<'/g < $HOME/.JGRprefsrc  | grep entry |  grep InitialRHome | sed -e s/.*InitialRHome.*value=\"// -e s/\".*$//g`
+
+    if test -n "$home"; then
+        R_HOME="$home"
+    fi
+    if test -n "$libs"; then
+	if test -z "${R_LIBS}"; then
+	    R_LIBS="${libs}"
+	else
+            R_LIBS="${R_LIBS}:${libs}"
+	fi
+	export R_LIBS
+    fi
+fi
+
+NO_SIG=1
+export NO_SIG
+export R_HOME
+export LD_LIBRARY_PATH
+## make sure Java doesn't screw up formatting of doubles
+LC_NUMERIC=C
+export LC_NUMERIC
+
+"${JAVA}" -Xmx512m -Djgr.load.pkgs=yes -Djgr.loader.ver="${JGR_LOADER_VER}" -Djava.library.path=".:${LD_LIBRARY_PATH}" -classpath "@RJAVA@/java/boot" -Drjava.path="@RJAVA@" -Drjava.class.path="@JRI_JAR@:@IPLOTS_JAR@:@JGR_JAR@" -Dmain.class=org.rosuda.JGR.JGR RJavaClassLoader $*

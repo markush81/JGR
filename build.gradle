@@ -1,0 +1,190 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+    }
+}
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+
+allprojects {
+    apply plugin: 'idea'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+configure(allprojects - project(':jgr-r')) {
+    apply plugin: 'com.github.johnrengelman.shadow'
+    apply plugin: 'java'
+
+    sourceCompatibility = JavaVersion.VERSION_1_4
+    targetCompatibility = JavaVersion.VERSION_1_4
+
+    compileJava {
+        options.encoding = 'UTF-8'
+        options.fork = true
+        options.forkOptions.javaHome = new File("${System.properties.'java.home'}")
+        options.compilerArgs << "-XDignore.symbol.file=true"
+    }
+
+    javadoc {
+        options.addStringOption('encoding', 'UTF-8')
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar
+//        archives javadocJar
+    }
+
+    dependencies {
+    }
+}
+
+project(":jgr-java") {
+    dependencies {
+        compile project(":ibase")
+        compile project(":javagd")
+        compile project(":REngine")
+    }
+
+    jar {
+        manifest {
+            attributes "Implementation-Version": version
+        }
+    }
+
+    shadowJar {
+        baseName = 'JGR'
+        classifier = null
+        version = null
+        dependencies {
+            exclude(project(':javagd'))
+            exclude(project(':rJava'))
+        }
+    }
+
+    jar.finalizedBy shadowJar
+}
+
+project(":jgr-r") {
+    apply plugin: 'distribution'
+
+    def javaDist = 'src/main/dist/inst/java'
+
+    clean.doLast {
+        file('src/main/dist/DESCRIPTION').delete()
+        file('src/main/dist/R').deleteDir()
+        file(javaDist).deleteDir()
+        file(javaDist).mkdir()
+    }
+
+
+    task prepareJGR(type: Copy) {
+        from('src/main/raw')
+        into('src/main/dist')
+        filter(ReplaceTokens, tokens: [VERSION: version])
+    }
+
+    distributions {
+        main {
+            contents {
+                from {
+                    'src/main/dist'
+                }
+            }
+        }
+    }
+
+    distTar {
+        archiveName = "JGR_${version}.tar.gz"
+        compression = Compression.GZIP
+    }
+
+    task copyJGR(type: Copy) {
+        from file("${project(':jgr-java').buildDir}/libs/JGR.jar")
+        into javaDist
+    }
+
+    distZip.enabled false
+
+    copyJGR.dependsOn project(":jgr-java").build
+    distTar.dependsOn copyJGR, prepareJGR
+    build.dependsOn distTar
+}
+
+project(":ibase") {
+}
+
+project(":REngine") {
+    sourceSets {
+        main {
+            java {
+                srcDirs = [projectDir]
+                exclude '**/Rserve/*', '**/JRI/test/*'
+            }
+        }
+    }
+
+    idea {
+        module {
+            contentRoot = file(projectDir)
+            sourceDirs += file(projectDir)
+            excludeDirs += file('Rserve')
+            excludeDirs += file('JRI/test')
+        }
+    }
+
+    dependencies {
+        compile project(":rJava")
+    }
+    javadoc.enabled false
+    sourcesJar.enabled false
+}
+
+project(":rJava") {
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['jri']
+                exclude '**/bootstrap/**', '**/examples/**', '**/tools/**'
+            }
+        }
+    }
+
+    idea {
+        module {
+            excludeDirs += file('jri/bootstrap')
+            excludeDirs += file('jri/examples')
+            excludeDirs += file('jri/tools')
+            excludeDirs += file('jri/src')
+        }
+    }
+
+    javadoc.enabled false
+    sourcesJar.enabled false
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.1'
+    distributionUrl = 'https://services.gradle.org/distributions/gradle-4.1-all.zip'
+}
+
+idea {
+    targetVersion = '16'
+}
