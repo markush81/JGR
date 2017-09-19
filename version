@@ -1,0 +1,9 @@
+#!/bin/sh
+
+PNAME=JGR
+VER=`cat gradle.properties | grep version |  awk '{split($0,a,"="); print a[2]}'`
+if test "$1" == "-f"; then 
+    echo "${PNAME}_${VER}.tar.gz"
+else
+    echo "${VER}"
+fi
