@@ -564,27 +564,29 @@ public class JGR {
         System.setProperty("com.apple.mrj.application.apple.menu.about.name", "JGR");
 
 
-        Application macApplication = Application.getApplication();
+        if (Common.isMac()) {
+            Application macApplication = Application.getApplication();
 
-        macApplication.setAboutHandler(new AboutHandler() {
-            public void handleAbout(AppEvent.AboutEvent aboutEvent) {
-                new AboutDialog();
-            }
-        });
+            macApplication.setAboutHandler(new AboutHandler() {
+                public void handleAbout(AppEvent.AboutEvent aboutEvent) {
+                    new AboutDialog();
+                }
+            });
 
-        macApplication.setPreferencesHandler(new PreferencesHandler() {
-            public void handlePreferences(AppEvent.PreferencesEvent preferencesEvent) {
-                PrefDialog inst = PrefDialog.showPreferences(null);
-                inst.setLocationRelativeTo(null);
-                inst.setVisible(true);
-            }
-        });
+            macApplication.setPreferencesHandler(new PreferencesHandler() {
+                public void handlePreferences(AppEvent.PreferencesEvent preferencesEvent) {
+                    PrefDialog inst = PrefDialog.showPreferences(null);
+                    inst.setLocationRelativeTo(null);
+                    inst.setVisible(true);
+                }
+            });
 
-        macApplication.setQuitHandler(new QuitHandler() {
-            public void handleQuitRequestWith(AppEvent.QuitEvent quitEvent, QuitResponse quitResponse) {
-                MAINRCONSOLE.exit();
-            }
-        });
+            macApplication.setQuitHandler(new QuitHandler() {
+                public void handleQuitRequestWith(AppEvent.QuitEvent quitEvent, QuitResponse quitResponse) {
+                    MAINRCONSOLE.exit();
+                }
+            });
+        }
 
         JGRmain = true;
         arguments = args;

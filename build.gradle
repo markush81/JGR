@@ -18,7 +18,7 @@ allprojects {
     }
 }
 
-configure(allprojects - project(':jgr-r')) {
+configure(subprojects - project(':jgr-r')) {
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'java'
 
@@ -73,6 +73,7 @@ project(":jgr-java") {
         dependencies {
             exclude(project(':javagd'))
             exclude(project(':rJava'))
+            exclude(dependency('com.massisframework:orange-extensions:1.3.1'))
         }
     }
 
