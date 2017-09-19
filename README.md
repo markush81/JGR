@@ -1,4 +1,4 @@
-#JGR 
+# JGR 
 
 This is mainly the source for http://www.rforge.net/JGR/.
 
