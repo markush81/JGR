@@ -161,7 +161,7 @@ project(":rJava") {
         main {
             java {
                 srcDirs = ['jri']
-                exclude '**/bootstrap/**', '**/examples/**', '**/tools/**'
+                exclude '**/bootstrap/**', '**/examples/**', '**/tools/**', '**/REngine/**'
             }
         }
     }
@@ -172,6 +172,7 @@ project(":rJava") {
             excludeDirs += file('jri/examples')
             excludeDirs += file('jri/tools')
             excludeDirs += file('jri/src')
+            excludeDirs += file('jri/REngine')
         }
     }
 
