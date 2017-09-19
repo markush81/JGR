@@ -12,12 +12,13 @@ cd /tmp
 find ${PNAME}/ -name .svn | xargs rm -rf
 
 cd ${PNAME}
+
+echo "Creating package ..."
 sh gradlew build
 
-cd /tmp
+cd ${PDIR}
 
-cp ${PNAME}/jgr-r/build/distributions/${PNAME}_${VER}.tar.gz "${PDIR}/../${PNAME}_${VER}.tar.gz"
-
+cp /tmp/${PNAME}/jgr-r/build/distributions/${PNAME}_${VER}.tar.gz ..
 echo "Done."
 
 ls -l ../${PNAME}_${VER}.tar.gz
