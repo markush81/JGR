@@ -2,16 +2,10 @@
 PDIR=`pwd`
 
 rm -rf /tmp/${PNAME}
-
 mkdir /tmp/${PNAME}
-
 cp -r . /tmp/${PNAME}
 
-cd /tmp
-
-find ${PNAME}/ -name .svn | xargs rm -rf
-
-cd ${PNAME}
+cd /tmp/${PNAME}
 
 echo "Creating package ..."
 sh gradlew build
@@ -20,5 +14,8 @@ cd ${PDIR}
 
 cp /tmp/${PNAME}/jgr-r/build/distributions/${PNAME}_${VER}.tar.gz ..
 echo "Done."
-
 ls -l ../${PNAME}_${VER}.tar.gz
+
+echo "Package content ..."
+tar tf ../${PNAME}_${VER}.tar.gz
+
