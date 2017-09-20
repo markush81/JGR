@@ -7,11 +7,14 @@ cp -r . /tmp/${PNAME}
 
 cd /tmp/${PNAME}
 
-echo "Creating package ..."
+echo "Building package ..."
 sh gradlew build
 
-cd ${PDIR}
+echo "Creating package ..."
+cd /tmp/${PNAME}/jgr-r/src/main/
+find ${PNAME}/ -name *DS_Store* | xargs rm -rf
+tar fcz "${PDIR}/../${PNAME}_${VER}.tar.gz" ${PNAME}
 
-cp /tmp/${PNAME}/jgr-r/build/distributions/${PNAME}.tgz ../${PNAME}_${VER}.tar.gz
 echo "Done."
+cd ${PDIR}
 ls -l ../${PNAME}_${VER}.tar.gz

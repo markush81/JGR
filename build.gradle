@@ -81,38 +81,21 @@ project(":jgr-java") {
 }
 
 project(":jgr-r") {
-    apply plugin: 'distribution'
+    apply plugin: 'base'
 
-    def javaDist = 'src/main/dist/inst/java'
+    def javaDist = 'src/main/JGR/inst/java'
 
     clean.doLast {
-        file('src/main/dist/DESCRIPTION').delete()
-        file('src/main/dist/R').deleteDir()
+        file('src/main/JGR/DESCRIPTION').delete()
+        file('src/main/JGR/R').deleteDir()
         file(javaDist).deleteDir()
         file(javaDist).mkdir()
     }
 
-
     task prepareJGR(type: Copy) {
         from('src/main/raw')
-        into('src/main/dist')
+        into('src/main/JGR')
         filter(ReplaceTokens, tokens: [VERSION: version])
-    }
-
-    distributions {
-        main {
-            contents {
-                from {
-                    'src/main/dist'
-                }
-            }
-        }
-    }
-
-    distTar {
-        baseName = "JGR"
-        version = null
-        compression = Compression.GZIP
     }
 
     task copyJGR(type: Copy) {
@@ -120,11 +103,8 @@ project(":jgr-r") {
         into javaDist
     }
 
-    distZip.enabled false
-
     copyJGR.dependsOn project(":jgr-java").build
-    distTar.dependsOn copyJGR, prepareJGR
-    build.dependsOn distTar
+    build.dependsOn prepareJGR, copyJGR
 }
 
 project(":ibase") {
