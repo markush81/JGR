@@ -1,3 +1,4 @@
 exportPattern(".+")
+importFrom("utils", "available.packages", "browseURL", "contrib.url", "download.file", "install.packages")
 import(rJava)
 import(JavaGD)

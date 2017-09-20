@@ -576,8 +576,7 @@ JGR <- function(update = FALSE) {
 	cat(launchJGR(popMsgs=FALSE))
 }
 
-.generate.mac.script <- function(launcher_loc = NULL,
-	bit64 = NULL, outfile = "jgrLaunch") {
+.generate.mac.script <- function(launcher_loc = NULL, bit64 = NULL, outfile = "jgrLaunch") {
 	rhome <- R.home()
 	libs <- paste(.libPaths(), sep = ":", collapse = ";")
 	if (is.null(bit64))
