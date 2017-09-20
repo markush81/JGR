@@ -1,6 +1,6 @@
 Package: JGR
 Version: @VERSION@
-Title: JGR - Java GUI for R
+Title: Java GUI for R
 Author: Markus Helbig <info@markushelbig.de>, Simon Urbanek, Ian Fellows
 Maintainer: Markus Helbig <info@markushelbig.de>
 SystemRequirements:	Java JDK 1.4 or higher
