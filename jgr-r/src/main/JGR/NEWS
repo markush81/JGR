@@ -1,10 +1,10 @@
 Change Log
 
-1.8-0 (under development)
-    o   moved to http://github.com/markush81/jgr
+1.8-0 (2017-09-20)
+    o   moved to http://github.com/markush81/JGR
     o   build R package with gradle, with one simple ./gradlew build
     o   simple mkdist
-    o   ...
+    o   fixed some R CMD CHECK --as-cran NOTES
 
 1.7-18  (2017-09-11)
     o   use ls(all=TRUE) to delete workspace
