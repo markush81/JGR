@@ -1,6 +1,9 @@
 Change Log
 
-1.8-0 (2017-09-20)
+1.8-1   (under development)
+    o   ...
+
+1.8-0   (2017-09-20)
     o   moved to http://github.com/markush81/JGR
     o   build R package with gradle, with one simple ./gradlew build
     o   simple mkdist
