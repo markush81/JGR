@@ -100,7 +100,7 @@ project(":jgr-r") {
     task prepareJGR(type: Copy) {
         from('src/main/raw')
         into('src/main/JGR')
-        filter(ReplaceTokens, tokens: [VERSION: version, DATE: new Date().format("yyyy-MM-dd")])
+        filter(ReplaceTokens, tokens: [VERSION: version, DATE: new Date().format("yyyy-MM-dd"), DATETIME: new Date().format("yyyy-MM-dd HH:mm:SS z")])
     }
 
     task copyJGR(type: Copy) {

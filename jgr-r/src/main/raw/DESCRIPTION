@@ -10,4 +10,5 @@ Suggests: XLConnect
 Description: Java GUI for R - cross-platform, universal and unified Graphical User Interface for R. For full functionality on Windows and Mac OS X JGR requires a start application which depends on your OS.
 License: GPL-2
 URL: http://rforge.net/JGR/
-Packaged: @DATE@
+Packaged: @DATETIME@
+NeedsCompilation: no

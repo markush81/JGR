@@ -4,5 +4,6 @@ out
 .iml
 .idea
 JGR.jar
-**/dist/R/JGR.R
-**/dist/DESCRIPTION
+**/JGR/R/JGR.R
+**/JGR/DESCRIPTION
+**/JGR/java
