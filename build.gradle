@@ -58,6 +58,7 @@ project(":jgr-java") {
         compile project(":javagd")
         compile project(":REngine")
         compile 'com.massisframework:orange-extensions:1.3.1'
+//        compile 'net.sf.jedit-syntax:jedit-syntax:2.2.2'
     }
 
     jar {
@@ -74,6 +75,7 @@ project(":jgr-java") {
             exclude(project(':javagd'))
             exclude(project(':rJava'))
             exclude(dependency('com.massisframework:orange-extensions:1.3.1'))
+//            exclude(dependency('net.sf.jedit-syntax:jedit-syntax:2.2.2'))
         }
     }
 
@@ -84,12 +86,15 @@ project(":jgr-r") {
     apply plugin: 'base'
 
     def javaDist = 'src/main/JGR/inst/java'
+    def javaSrc = 'src/main/JGR/java'
 
     clean.doLast {
         file('src/main/JGR/DESCRIPTION').delete()
         file('src/main/JGR/R').deleteDir()
         file(javaDist).deleteDir()
+        file(javaSrc).deleteDir()
         file(javaDist).mkdir()
+        file(javaSrc).mkdir()
     }
 
     task prepareJGR(type: Copy) {
@@ -103,8 +108,13 @@ project(":jgr-r") {
         into javaDist
     }
 
+    task copyJGRSource(type: Copy) {
+        from project(':jgr-java').sourceSets.main.java.srcDirs
+        into javaSrc
+    }
+
     copyJGR.dependsOn project(":jgr-java").build
-    build.dependsOn prepareJGR, copyJGR
+    build.dependsOn prepareJGR, copyJGR, copyJGRSource
 }
 
 project(":ibase") {
