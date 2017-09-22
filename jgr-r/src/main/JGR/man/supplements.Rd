@@ -7,7 +7,6 @@
 \alias{jgr.set.options}
 \alias{object.browser}
 \alias{package.manager}
-\alias{print.hsearch}
 \alias{reformat.code}
 \title{
   Supplemental JGR functions
@@ -32,7 +31,6 @@ jgr.set.options(..., useJavaGD = TRUE, useJGRpager = TRUE,
                 useJGRbrowser = TRUE, useHTMLHelp = TRUE)
 object.browser()
 package.manager()
-\method{print}{hsearch}(x, ...)
 reformat.code(txt)
 }
 \arguments{
@@ -54,7 +52,6 @@ reformat.code(txt)
     used as the default browser}
   \item{useHTMLHelp}{if set to \code{TRUE}, HTML help used as the default}
   \item{...}{additional parameters or options to set}
-  \item{x}{result of help.search}
   \item{txt}{R code to be made pretty}
 }
 \keyword{programming}

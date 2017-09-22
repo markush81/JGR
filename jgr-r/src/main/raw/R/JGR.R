@@ -301,43 +301,6 @@ jgr.removeMenuItem <- function(menu, index) {
 	paste(".jgr.user.functions[[", fnc, "]]()", sep = "")
 }
 
-
-
-print.hsearch <- function(x, ...) {
-    if (R.version$svn >= 67550) {
-	    httpdPort <- tools::startDynamicHelp(NA)
-    } else {
-        httpdPort <- eval(parse(text="tools:::httpdPort"))
-    }
-	if (httpdPort > 0L) {
-		path <- file.path(tempdir(), ".R/doc/html")
-		dir.create(path, recursive = TRUE, showWarnings = FALSE)
-		out <- paste("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n",
-			"<html><head><title>R: help</title>\n", "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=\"UTF-8\">\n",
-			"<link rel=\"stylesheet\" type=\"text/css\" href=\"/doc/html/R.css\">\n",
-			"</head><body>\n\n<hr>\n", sep = "")
-		out <- c(out, "<p>", "Search Result", "</p><br>")
-		out <- c(out, "<table width=\"100%\" summary=\"R Package list\">\n",
-			"<tr align=\"left\" valign=\"top\">\n", "<td width=\"25%\">Topic</td><td>Package</td><td>Description</td></tr>\n")
-
-		result <- x$matches
-		for (i in 1:dim(result)[1]) {
-			links <- paste("<a href=\"http://127.0.0.1:", httpdPort,
-				"/library/", result[i, 3], "/help/", result[i,
-				1], "\">", result[i, 1], "</a>", sep = "")
-			out <- c(out, paste("<tr align=\"left\" valign=\"top\">\n",
-				"<td>", links, "</td><td>", result[i, 3], "</td><td>",
-				result[i, 2], "</td></tr>\n", sep = ""))
-		}
-		out <- c(out, "</table>\n</p>\n<hr>\n</body></html>")
-		out
-		writeLines(out, file.path(path, paste(x$pattern, ".html",
-			sep = "")))
-		browseURL(paste("http://127.0.0.1:", httpdPort,
-			"/doc/html/", x$pattern, ".html", sep = ""))
-	}
-}
-
 .completeCommand <- function(x) {
 	result <- c()
 	if (regexpr("\\$$", x) > -1) {
