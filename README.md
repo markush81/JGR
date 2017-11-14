@@ -1,6 +1,6 @@
 # JGR - Java GUI for R
 
-**JGR** (speak 'Jaguar') is a universal and unified Graphical User Interface for **R** (it actually abbreviates **J**ava **G**ui for **R**). **JGR** was introduced at the [useR!](http://www.ci.tuwien.ac.at/Conferences/useR-2004) meeting in 2004 and there is an introductory article in the [Statistical Computing and Graphics Newsletter Vol 16 nr 2 p9-12](http://www.stat-computing.org/newsletter/v162.pdf)
+**JGR** (speak 'Jaguar') is a universal and unified Graphical User Interface for **R** (it actually abbreviates **J**ava **G**ui for **R**). **JGR** was introduced at the [useR!](http://www.ci.tuwien.ac.at/Conferences/useR-2004) meeting in 2004 and there is an introductory article in the [Statistical Computing and Graphics Newsletter Vol 16 nr 2 p9-12](http://stat-computing.org/newsletter/issues/scgn-16-2.pdf)
 
 
 # HowTo
