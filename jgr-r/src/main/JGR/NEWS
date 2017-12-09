@@ -1,5 +1,8 @@
 Change Log
 
+1.8-5   (2017-12-09)
+    o   hide irritating stacktraces for now
+
 1.8-4   (2017-09-24)
     o   fixed JAR content for Windows
 

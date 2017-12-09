@@ -558,7 +558,7 @@ public class PrefDialog extends javax.swing.JDialog implements ActionListener {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

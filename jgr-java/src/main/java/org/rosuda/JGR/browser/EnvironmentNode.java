@@ -123,7 +123,7 @@ public class EnvironmentNode extends DefaultBrowserNode {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

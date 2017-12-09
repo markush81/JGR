@@ -161,7 +161,7 @@ public class JavaGD extends GDInterface implements ActionListener, WindowListene
                     }
 
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+//                    ex.printStackTrace();
                 }
             }
         }
@@ -176,7 +176,7 @@ public class JavaGD extends GDInterface implements ActionListener, WindowListene
             JGR.timedEval("try({ dev.set(" + (c.getDeviceNumber() + 1) +
                     "); dev.off()},silent=TRUE)", false);
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
@@ -227,9 +227,9 @@ class JGRBufferedPanel extends JGDBufferedPanel {
         try {
             JGR.idleEval("try(JavaGD:::.javaGD.resize(" + devNr + "),silent=TRUE)");
         } catch (REngineException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (REXPMismatchException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
@@ -240,9 +240,9 @@ class JGRBufferedPanel extends JGDBufferedPanel {
             try {
                 exp = JGR.idleEval("try(JavaGD:::.javaGD.resize(" + devNr + "),silent=TRUE)");
             } catch (REngineException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             } catch (REXPMismatchException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
             if (exp != null) {
                 lastSize = d;

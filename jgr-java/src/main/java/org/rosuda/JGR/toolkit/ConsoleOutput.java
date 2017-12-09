@@ -114,7 +114,7 @@ public class ConsoleOutput extends JTextPane {
                     bf.append(getLine(i));
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         return bf;
     }

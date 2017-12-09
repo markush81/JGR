@@ -56,7 +56,7 @@ public class DefaultBrowserNode implements BrowserNode, BrowserNodeFactory {
                 img = ImageIO.read(url);
                 ic = new ImageIcon(img);
             } catch (Exception ex) {
-                ex.printStackTrace();
+//                ex.printStackTrace();
             }
         }
         return ic;
@@ -255,7 +255,7 @@ public class DefaultBrowserNode implements BrowserNode, BrowserNodeFactory {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
@@ -303,7 +303,7 @@ public class DefaultBrowserNode implements BrowserNode, BrowserNodeFactory {
                 ed.setText(sb);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

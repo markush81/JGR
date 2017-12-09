@@ -38,7 +38,7 @@ public class ErrorMsg {
             out.flush();
             out.close();
         } catch (IOException err) {
-            err.printStackTrace();
+//            err.printStackTrace();
         }
     }
 
@@ -67,7 +67,7 @@ public class ErrorMsg {
             out.flush();
             out.close();
         } catch (IOException err) {
-            err.printStackTrace();
+//            err.printStackTrace();
         }
     }
 }

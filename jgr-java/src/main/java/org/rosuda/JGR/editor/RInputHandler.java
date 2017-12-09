@@ -169,7 +169,7 @@ public class RInputHandler extends DefaultInputHandler {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         }
 

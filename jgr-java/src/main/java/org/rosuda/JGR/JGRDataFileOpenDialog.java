@@ -194,7 +194,7 @@ public class JGRDataFileOpenDialog extends JFileChooser implements ActionListene
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
