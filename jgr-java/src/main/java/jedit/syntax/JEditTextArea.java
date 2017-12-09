@@ -487,9 +487,9 @@ public class JEditTextArea extends JComponent implements KeyListener {
 				this.select(0, 0);
 				reader.close();
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 			} catch (IOException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 		}
 	}
@@ -503,9 +503,9 @@ public class JEditTextArea extends JComponent implements KeyListener {
 				writer.flush();
 				writer.close();
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 			} catch (IOException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 		}
 	}
@@ -860,7 +860,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 		try {
 			return document.getText(0, document.getLength());
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 			return null;
 		}
 	}
@@ -901,7 +901,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 			document.beginCompoundEdit();
 			document.insertString(document.getLength(), text, null);
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 		} finally {
 			document.endCompoundEdit();
 		}
@@ -912,7 +912,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 			document.beginCompoundEdit();
 			document.insertString(pos, text, null);
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 		} finally {
 			document.endCompoundEdit();
 		}
@@ -927,7 +927,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 			document.remove(0, document.getLength());
 			document.insertString(0, text, null);
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 		} finally {
 			document.endCompoundEdit();
 		}
@@ -946,7 +946,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 		try {
 			return document.getText(start, len);
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 			return null;
 		}
 	}
@@ -966,7 +966,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 		try {
 			document.getText(start, len, segment);
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 			segment.offset = segment.count = 0;
 		}
 	}
@@ -1322,7 +1322,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 				}
 			}
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 			throw new InternalError("Cannot replace" + " selection");
 		}
 		// No matter what happends... stops us from leaving document
@@ -1418,7 +1418,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 			document.remove(caret, str.length());
 			document.insertString(caret, str, null);
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 		} finally {
 			document.endCompoundEdit();
 		}
@@ -1675,7 +1675,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 				return;
 			}
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 		}
 
 		bracketLine = bracketPosition = -1;
@@ -1993,7 +1993,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 				try {
 					doDoubleClick(evt, line, offset, dot);
 				} catch (BadLocationException bl) {
-					bl.printStackTrace();
+//					bl.printStackTrace();
 				}
 				break;
 			case 3:
@@ -2028,7 +2028,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 					return;
 				}
 			} catch (BadLocationException bl) {
-				bl.printStackTrace();
+//				bl.printStackTrace();
 			}
 
 			// Ok, it's not a bracket... select the word
@@ -2138,7 +2138,7 @@ public class JEditTextArea extends JComponent implements KeyListener {
 		try {
 			document.replace(getSelectionStart(), getSelectionEnd() - getSelectionStart(), currentReplaceStr, null);
 		} catch (BadLocationException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 

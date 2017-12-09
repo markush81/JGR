@@ -462,7 +462,7 @@ public abstract class InputHandler extends KeyAdapter {
 				try {
 					textArea.getDocument().remove(caret - 1, 1);
 				} catch (BadLocationException bl) {
-					bl.printStackTrace();
+//					bl.printStackTrace();
 				}
 			}
 		}
@@ -496,7 +496,7 @@ public abstract class InputHandler extends KeyAdapter {
 			try {
 				textArea.getDocument().remove(caret + lineStart, start - (caret + lineStart));
 			} catch (BadLocationException bl) {
-				bl.printStackTrace();
+//				bl.printStackTrace();
 			}
 		}
 	}
@@ -521,7 +521,7 @@ public abstract class InputHandler extends KeyAdapter {
 				try {
 					textArea.getDocument().remove(caret, 1);
 				} catch (BadLocationException bl) {
-					bl.printStackTrace();
+//					bl.printStackTrace();
 				}
 			}
 		}
@@ -555,7 +555,7 @@ public abstract class InputHandler extends KeyAdapter {
 			try {
 				textArea.getDocument().remove(start, (caret + lineStart) - start);
 			} catch (BadLocationException bl) {
-				bl.printStackTrace();
+//				bl.printStackTrace();
 			}
 		}
 	}

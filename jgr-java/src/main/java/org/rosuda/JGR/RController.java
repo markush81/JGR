@@ -30,7 +30,7 @@ public class RController {
             x = JGR.timedEval("R.home()");
             return x.asString();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return "";
     }
@@ -41,7 +41,7 @@ public class RController {
             REXP x = JGR.timedEval(".libPaths()");
             return x.asStrings();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return null;
     }
@@ -52,7 +52,7 @@ public class RController {
             REXP x = JGR.timedEval("try(as.character(options('prompt')),silent=TRUE)");
             return x.asString();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         return "> ";
@@ -64,8 +64,7 @@ public class RController {
             REXP x = JGR.timedEval("try(as.character(options('continue')),silent=TRUE)");
             return x.asString();
         } catch (Exception e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return "> ";
     }
@@ -83,7 +82,7 @@ public class RController {
                 return p += x.asStrings()[x.asStrings().length - 1];
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return null;
     }
@@ -94,7 +93,7 @@ public class RController {
             REXP x = JGR.timedEval("getOption(\"defaultPackages\")");
             return x.asStrings();
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return new String[]{};
     }
@@ -109,8 +108,7 @@ public class RController {
             REXP x = JGR.timedEval("as.character(unique(c(getOption(\"defaultPackages\"),strsplit(\"" + jdp + "\",', ?')[[1]],'JGR')))");
             return x.asStrings();
         } catch (Exception e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return new String[]{};
     }
@@ -121,7 +119,7 @@ public class RController {
             JGR.timedAssign(".$JGR", new REXPString(rlist));
             JGR.timedEval("{ for (pkg in strsplit(`.$JGR`,', ?')[[1]]) require(pkg, warn.conflicts=FALSE, character.only=TRUE); rm(`.$JGR`); TRUE }");
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
@@ -132,14 +130,14 @@ public class RController {
             try {
                 JGR.timedEval("cat('Package " + pack + " not found. Attempting to download...\n')");
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
             JGR.MAINRCONSOLE.execute("install.packages('" + pack + "');library(" + pack + ")", true);
         } else {
             try {
                 JGR.MAINRCONSOLE.execute("library(" + pack + ")");
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         }
     }
@@ -163,11 +161,9 @@ public class RController {
                 return c;
             }
         } catch (REngineException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return null;
     }
@@ -347,7 +343,7 @@ public class RController {
             }
             return valid.isTRUE()[0];
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return false;
     }
@@ -362,11 +358,9 @@ public class RController {
                 return r;
             }
         } catch (REngineException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return r;
     }
@@ -381,11 +375,9 @@ public class RController {
                 return r;
             }
         } catch (REngineException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return r;
     }
@@ -406,11 +398,9 @@ public class RController {
                     JGR.MODELS.add(createRModel(models[i], models[++i]));
             }
         } catch (REngineException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         try {
             x = JGR.idleEval(".getDataObjects()");
@@ -428,11 +418,9 @@ public class RController {
                 }
             }
         } catch (REngineException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         try {
             x = JGR.idleEval(".getOtherObjects()");
@@ -451,11 +439,9 @@ public class RController {
                 }
             }
         } catch (REngineException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         try {
             x = JGR.idleEval(".getFunctionsInWS()");
@@ -471,11 +457,9 @@ public class RController {
                 }
             }
         } catch (REngineException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
@@ -511,7 +495,7 @@ public class RController {
                 }
             }
         } catch (Exception e1) {
-            e1.printStackTrace();
+//            e1.printStackTrace();
         }
         return pkg;
     }
@@ -543,8 +527,7 @@ public class RController {
                 }
             }
         } catch (Exception e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return cont;
     }
@@ -560,7 +543,7 @@ public class RController {
                     ro.setInfo("dim(" + y.asIntegers()[0] + ":" + y.asIntegers()[1] + ")");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         } else if (type.equals("matrix")) {
             try {
@@ -569,7 +552,7 @@ public class RController {
                     ro.setInfo("dim(" + y.asIntegers()[0] + ":" + y.asIntegers()[1] + ")");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         } else if (type.equals("factor")) {
             try {
@@ -578,7 +561,7 @@ public class RController {
                     ro.setInfo("levels: " + y.asIntegers()[0]);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         } else if (type.equals("list")) {
             try {
@@ -587,8 +570,7 @@ public class RController {
                     ro.setInfo("length: " + y.asIntegers()[0]);
                 }
             } catch (Exception e) {
-
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         } else if (type.equals("table")) {
             try {
@@ -597,8 +579,7 @@ public class RController {
                     ro.setInfo("dim: " + y.asIntegers()[0]);
                 }
             } catch (REXPMismatchException e) {
-
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         } else if (type.equals("function")) {
             String fHelp = getFunHelp(ro.getRName());
@@ -612,8 +593,7 @@ public class RController {
                     ro.setInfo("cats: " + y.asIntegers()[0]);
                 }
             } catch (REXPMismatchException e) {
-
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         }
         return ro;
@@ -630,8 +610,7 @@ public class RController {
                 m.setRsquared(res[0]);
             }
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         try {
             y = JGR.timedEval("try(AIC(" + sx + "),silent=TRUE)");
@@ -639,8 +618,7 @@ public class RController {
                 m.setAic(res[0]);
             }
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         try {
             y = JGR.timedEval("try(deviance(" + sx + "),silent=TRUE)");
@@ -648,8 +626,7 @@ public class RController {
                 m.setDeviance(res[0]);
             }
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         int[] res1;
         REXP x;
@@ -659,8 +636,7 @@ public class RController {
                 m.setDf(res1[0]);
             }
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         String[] res2;
         REXP z;
@@ -670,8 +646,7 @@ public class RController {
                 m.setFamily(res2[0]);
             }
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         try {
             z = JGR.timedEval("suppressWarnings(try(capture.output(" + sx + "[[\"call\"]][[\"formula\"]])))");
@@ -682,8 +657,7 @@ public class RController {
                 m.setCall(call);
             }
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         try {
             z = JGR.timedEval("suppressWarnings(try(capture.output(" + sx + "[[\"call\"]][[\"data\"]])))");
@@ -696,8 +670,7 @@ public class RController {
                 }
             }
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return m;
     }
@@ -787,8 +760,7 @@ public class RController {
                 }
             }
         } catch (REXPMismatchException e) {
-
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 
@@ -816,7 +788,7 @@ public class RController {
                     }
                 }
             } catch (REXPMismatchException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
             return null;
         } else {
@@ -837,7 +809,7 @@ public class RController {
                     cvs.add(createSVar(cvs, o2));
                 }
             } catch (REXPMismatchException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         }
 
@@ -878,7 +850,7 @@ public class RController {
                 v = newVar(cvs, o.getName(), x.asDoubles());
             }
         } catch (REXPMismatchException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return v;
     }
@@ -1219,7 +1191,7 @@ public class RController {
             JGR.timedEval("rm(" + TEMP_MATRIX_CONTENT_JGR + ");rm(" + TEMP_MATRIX_DIM_NAMES_JGR + ")");
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             new ErrorMsg(e);
             return false;
         }

@@ -191,7 +191,7 @@ public class HeadNode implements BrowserNode {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

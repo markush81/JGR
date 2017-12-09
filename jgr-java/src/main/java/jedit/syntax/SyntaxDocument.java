@@ -89,7 +89,7 @@ public class SyntaxDocument extends PlainDocument {
 				tokenMarker.markTokens(lineSegment, i);
 			}
 		} catch (BadLocationException bl) {
-			bl.printStackTrace();
+//			bl.printStackTrace();
 		}
 	}
 

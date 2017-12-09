@@ -290,7 +290,7 @@ public class TxtTableLoader extends javax.swing.JFrame {
             try {
                 JGR.timedEval(cmd);
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
         } else {
             execute(cmd, true);
@@ -302,7 +302,7 @@ public class TxtTableLoader extends javax.swing.JFrame {
         try {
             JGR.timedEval(".refreshObjects()");
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         RObject obj = new RObject(previewName, "data.frame", null, false);
         SVarSet vs = RController.newSet(obj);
@@ -316,7 +316,7 @@ public class TxtTableLoader extends javax.swing.JFrame {
                 JGR.timedEval("rm(" + previewName + ")");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

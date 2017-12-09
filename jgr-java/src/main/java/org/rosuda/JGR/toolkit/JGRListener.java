@@ -22,7 +22,7 @@ public class JGRListener implements ActionListener {
             try {
                 JGR.timedEval(cmd);
             } catch (Exception e1) {
-                e1.printStackTrace();
+//                e1.printStackTrace();
             }
         } else {
             JGR.MAINRCONSOLE.execute(cmd, true);
