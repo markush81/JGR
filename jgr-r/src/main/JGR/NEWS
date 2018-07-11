@@ -1,5 +1,9 @@
 Change Log
 
+1.8-6   (2018-07-11)
+    o   prevent NullpointerExceptions when saving output
+    o   use "rm(list=setdiff(ls(), "pkg"))" for clearing workspace
+
 1.8-5   (2017-12-09)
     o   hide irritating stacktraces for now
 

@@ -165,7 +165,7 @@ public class ConsoleOutput extends JTextPane {
         return bf;
     }
 
-    private boolean isCommandLine(int i) throws BadLocationException {
+    private boolean isCommandLine(int i) {
         if (prompt == null) {
             prompt = org.rosuda.JGR.RController.getRPrompt();
         }
@@ -173,13 +173,16 @@ public class ConsoleOutput extends JTextPane {
             continueS = org.rosuda.JGR.RController.getRContinue();
         }
         String line = getLine(i);
+        if (line == null) {
+            return false;
+        }
         if (line.equals(prompt.trim())) {
             return false;
         }
         return (line.trim().startsWith(prompt.trim()) || line.trim().startsWith(continueS.trim()));
     }
 
-    private boolean isResultLine(int i) throws BadLocationException {
+    private boolean isResultLine(int i) {
         if (prompt == null) {
             prompt = org.rosuda.JGR.RController.getRPrompt();
         }
@@ -187,6 +190,9 @@ public class ConsoleOutput extends JTextPane {
             continueS = org.rosuda.JGR.RController.getRContinue();
         }
         String line = getLine(i);
+        if (line == null) {
+            return false;
+        }
         return (!line.trim().startsWith(prompt.trim()) && !line.trim().startsWith(continueS.trim()));
     }
 
@@ -197,7 +203,11 @@ public class ConsoleOutput extends JTextPane {
         if (continueS == null) {
             continueS = org.rosuda.JGR.RController.getRContinue();
         }
-        return !getLine(i).trim().equals(prompt.trim()) && !getLine(i).trim().startsWith("Error");
+        String line = getLine(i);
+        if (line == null) {
+            return true;
+        }
+        return !line.trim().equals(prompt.trim()) && !line.trim().startsWith("Error");
     }
 
     private String trimFront(String s) {
