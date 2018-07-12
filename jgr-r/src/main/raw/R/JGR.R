@@ -516,7 +516,7 @@ jgr.removeMenuItem <- function(menu, index) {
 }
 
 
-JGR <- function(update = FALSE) {
+JGR <- function(update = FALSE, javaArgs = NULL, jgrArgs = "") {
 	if (!update && .jgr.works && .jcall("org/rosuda/JGR/JGR",
 		"Z", "isJGRmain")) {
 		cat("JGR is already running. If you want to re-install or update JGR, use JGR(update=TRUE).\n")
@@ -536,7 +536,7 @@ JGR <- function(update = FALSE) {
 			lt, c(cran, "http://www.rforge.net/")))
 	}
 
-	cat(launchJGR(popMsgs=FALSE))
+	cat(launchJGR(javaArgs,jgrArgs,popMsgs=FALSE))
 }
 
 .generate.mac.script <- function(launcher_loc = NULL, bit64 = NULL, outfile = "jgrLaunch") {
