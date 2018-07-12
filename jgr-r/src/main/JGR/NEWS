@@ -1,6 +1,7 @@
 Change Log
 
 1.8-6   (2018-07-11)
+    o   added "javaArgs" and "jgrArgs" to "JGR()" function
     o   prevent NullpointerExceptions when saving output
     o   use "rm(list=setdiff(ls(), "pkg"))" for clearing workspace
 

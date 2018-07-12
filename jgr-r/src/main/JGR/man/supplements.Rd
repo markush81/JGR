@@ -22,7 +22,7 @@
   are provided from the JGR website \url{http://www.rosuda.org}
 }
 \usage{
-JGR(update = FALSE)
+JGR(update = FALSE, javaArgs = NULL, jgrArgs = "")
 broken.gomp()
 installPackages(contriburl = NULL, type = getOption("pkgType"))
 jgr.pager(file, header, title, delete.file)
@@ -36,6 +36,8 @@ reformat.code(txt)
 \arguments{
   \item{update}{If set to \code{TRUE} then JGR is updated for the RoSuDa
     repository (internet connection is required).}
+  \item{javaArgs}{Arguments for Java.}
+  \item{jgrArgs}{Arguments passed to the main method of JGR.}
   \item{contriburl}{same as in \code{\link{install.packages}}}
   \item{type}{JGR uses the package type set in the R options}
   \item{file}{file to show}
