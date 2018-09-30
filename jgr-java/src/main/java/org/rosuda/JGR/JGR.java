@@ -1,7 +1,6 @@
 package org.rosuda.JGR;
 
 
-import com.apple.eawt.*;
 import org.rosuda.JGR.toolkit.*;
 import org.rosuda.JGR.util.ErrorMsg;
 import org.rosuda.REngine.*;
@@ -12,6 +11,7 @@ import org.rosuda.ibase.toolkit.EzMenuSwing;
 import org.rosuda.util.Global;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.*;
@@ -565,27 +565,16 @@ public class JGR {
 
 
         if (Common.isMac()) {
-            Application macApplication = Application.getApplication();
+            Desktop desktop = Desktop.getDesktop();
 
-            macApplication.setAboutHandler(new AboutHandler() {
-                public void handleAbout(AppEvent.AboutEvent aboutEvent) {
-                    new AboutDialog();
-                }
-            });
+            desktop.setAboutHandler(aboutEvent -> new AboutDialog());
 
-            macApplication.setPreferencesHandler(new PreferencesHandler() {
-                public void handlePreferences(AppEvent.PreferencesEvent preferencesEvent) {
-                    PrefDialog inst = PrefDialog.showPreferences(null);
-                    inst.setLocationRelativeTo(null);
-                    inst.setVisible(true);
-                }
+            desktop.setPreferencesHandler(preferencesEvent -> {
+                PrefDialog inst = PrefDialog.showPreferences(null);
+                inst.setLocationRelativeTo(null);
+                inst.setVisible(true);
             });
-
-            macApplication.setQuitHandler(new QuitHandler() {
-                public void handleQuitRequestWith(AppEvent.QuitEvent quitEvent, QuitResponse quitResponse) {
-                    MAINRCONSOLE.exit();
-                }
-            });
+            desktop.setQuitHandler((quitEvent, quitResponse) -> MAINRCONSOLE.exit());
         }
 
         JGRmain = true;

@@ -1,5 +1,8 @@
 Change Log
 
+1.8-7   (2018-09-30)
+    o   adapted to be compatible with JDK 1.9 (prior JDKs are not supported anymore)
+
 1.8-6   (2018-07-11)
     o   added "javaArgs" and "jgrArgs" to "JGR()" function
     o   prevent NullpointerExceptions when saving output
