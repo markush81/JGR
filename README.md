@@ -1,5 +1,7 @@
 :warning: JGR was mainly developed during my study time until 2006. Back then my programming skills where just coming up and evolving, that's why the code looks like it looks.
 
+:warning: This branch is for JDK >= 1.9
+
 # JGR - Java GUI for R
 
 **JGR** (speak 'Jaguar') is a universal and unified Graphical User Interface for **R** (it actually abbreviates **J**ava **G**ui for **R**). **JGR** was introduced at the [useR!](http://www.ci.tuwien.ac.at/Conferences/useR-2004) meeting in 2004 and there is an introductory article in the [Statistical Computing and Graphics Newsletter Vol 16 nr 2 p9-12](http://stat-computing.org/newsletter/issues/scgn-16-2.pdf)
@@ -8,7 +10,8 @@
 # HowTo
 
 1. Install R from [r-project.org](https://www.r-project.org)
-2. Install packages from within R `install.packages('JGR',,'http://www.rforge.net/') `
+2. Install dependent packages from within R `install.packages(c('rJava','JavaGD'))`
+2. Install packages from within R `install.packages('https://github.com/markush81/JGR/releases/download/1.9-1/JGR_1.9.1.tar.gz',repos=NULL)`
    
    ```
     R version 3.4.1 (2017-06-30) -- "Single Candle"
@@ -31,7 +34,7 @@
     
     [Vorher gesicherter Workspace wiederhergestellt]
     
-    > install.packages('JGR',,'http://www.rforge.net/') 
+    > install.packages('https://github.com/markush81/JGR/releases/download/1.9-1/JGR_1.9.1.tar.gz',repos=NULL)
     installiere auch Abhängigkeiten ‘rJava’, ‘JavaGD’
     
     
