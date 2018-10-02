@@ -1,7 +1,12 @@
 Change Log
 
-1.9-x   (development)
+1.9-1   (2020-04-08)
     o   adapted to be compatible with JDK 1.9 (prior JDKs are not supported anymore)
+    o   available at github only
+
+1.8-7   (2020-04-08)
+    o   updated dependent packages rJava
+    o   compile against Java 1.6
 
 1.8-6   (2018-07-11)
     o   added "javaArgs" and "jgrArgs" to "JGR()" function
