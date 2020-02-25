@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>JGR.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.rosuda.JGR</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
