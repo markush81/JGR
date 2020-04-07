@@ -2,10 +2,10 @@ Package: JGR
 Version: @VERSION@
 Title: Java GUI for R
 Date: @DATE@
-Author: Markus Helbig <info@markushelbig.de>, Simon Urbanek, Ian Fellows
-Maintainer: Markus Helbig <info@markushelbig.de>
-SystemRequirements:	Java JDK 1.4 or higher
-Depends: R (>= 3.0.0), rJava (>= 0.9-5), JavaGD (>= 0.6)
+Author: Markus Helbig <mhelbig81@googlemail.com>, Simon Urbanek, Ian Fellows
+Maintainer: Markus Helbig <mhelbig81@googlemail.com>
+SystemRequirements:	Java JDK 1.6 or higher
+Depends: R (>= 3.0.0), rJava (>= 0.9-12), JavaGD (>= 0.6)
 Suggests: XLConnect
 Description: Java GUI for R - cross-platform, universal and unified Graphical User Interface for R. For full functionality on Windows and Mac OS X JGR requires a start application which depends on your OS.
 License: GPL-2

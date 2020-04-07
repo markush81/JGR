@@ -1,7 +1,9 @@
 Change Log
 
-1.8-7   (under develpoment)
-    o   ...
+1.8-7   (2020-04-08)
+    o   updated dependent packages rJava
+    o   compile against Java 1.6
+    o   updated maintainer email
 
 1.8-6   (2018-07-11)
     o   added "javaArgs" and "jgrArgs" to "JGR()" function

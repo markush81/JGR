@@ -22,8 +22,8 @@ configure(subprojects - project(':jgr-r')) {
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'java'
 
-    sourceCompatibility = JavaVersion.VERSION_1_4
-    targetCompatibility = JavaVersion.VERSION_1_4
+    sourceCompatibility = JavaVersion.VERSION_1_6
+    targetCompatibility = JavaVersion.VERSION_1_6
 
     compileJava {
         options.encoding = 'UTF-8'
