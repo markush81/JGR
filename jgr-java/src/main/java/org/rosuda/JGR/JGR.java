@@ -1,8 +1,36 @@
 package org.rosuda.JGR;
 
 
-import com.apple.eawt.*;
-import org.rosuda.JGR.toolkit.*;
+import java.awt.Desktop;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.StringTokenizer;
+import java.util.Vector;
+import java.util.stream.Collectors;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+import com.apple.eawt.Application;
+import org.rosuda.JGR.toolkit.AboutDialog;
+import org.rosuda.JGR.toolkit.ConsoleSync;
+import org.rosuda.JGR.toolkit.JGRListener;
+import org.rosuda.JGR.toolkit.JGRPrefs;
+import org.rosuda.JGR.toolkit.PrefDialog;
 import org.rosuda.JGR.util.ErrorMsg;
 import org.rosuda.REngine.*;
 import org.rosuda.REngine.JRI.JRIEngine;
@@ -10,14 +38,6 @@ import org.rosuda.ibase.Common;
 import org.rosuda.ibase.SVar;
 import org.rosuda.ibase.toolkit.EzMenuSwing;
 import org.rosuda.util.Global;
-
-import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.io.*;
-import java.util.Enumeration;
-import java.util.StringTokenizer;
-import java.util.Vector;
 
 
 public class JGR {
@@ -567,25 +587,33 @@ public class JGR {
         if (Common.isMac()) {
             Application macApplication = Application.getApplication();
 
-            macApplication.setAboutHandler(new AboutHandler() {
-                public void handleAbout(AppEvent.AboutEvent aboutEvent) {
-                    new AboutDialog();
-                }
-            });
+            List<String> actions = Arrays.stream(Desktop.Action.values()).map(Desktop.Action::name).collect(Collectors.toList());
 
-            macApplication.setPreferencesHandler(new PreferencesHandler() {
-                public void handlePreferences(AppEvent.PreferencesEvent preferencesEvent) {
+            if (actions.contains("APP_ABOUT")) {
+                Desktop.getDesktop().setAboutHandler(aboutEvent -> new AboutDialog());
+            } else {
+                macApplication.setAboutHandler(aboutEvent -> new AboutDialog());
+            }
+
+            if (actions.contains("APP_PREFERENCES")) {
+                Desktop.getDesktop().setPreferencesHandler(preferencesEvent -> {
                     PrefDialog inst = PrefDialog.showPreferences(null);
                     inst.setLocationRelativeTo(null);
                     inst.setVisible(true);
-                }
-            });
+                });
+            } else {
+                macApplication.setPreferencesHandler(preferencesEvent -> {
+                    PrefDialog inst = PrefDialog.showPreferences(null);
+                    inst.setLocationRelativeTo(null);
+                    inst.setVisible(true);
+                });
+            }
 
-            macApplication.setQuitHandler(new QuitHandler() {
-                public void handleQuitRequestWith(AppEvent.QuitEvent quitEvent, QuitResponse quitResponse) {
-                    MAINRCONSOLE.exit();
-                }
-            });
+            if (actions.contains("APP_QUIT_HANDLER")) {
+                Desktop.getDesktop().setQuitHandler((quitEvent, quitResponse) -> MAINRCONSOLE.exit());
+            } else {
+                macApplication.setQuitHandler((quitEvent, quitResponse) -> MAINRCONSOLE.exit());
+            }
         }
 
         JGRmain = true;

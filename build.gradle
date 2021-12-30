@@ -1,14 +1,15 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
-    }
-}
-
 import org.apache.tools.ant.filters.ReplaceTokens
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.github.johnrengelman:shadow:7.1.2"
+    }
+}
 
 allprojects {
     apply plugin: 'idea'
@@ -22,8 +23,8 @@ configure(subprojects - project(':jgr-r')) {
     apply plugin: 'com.github.johnrengelman.shadow'
     apply plugin: 'java'
 
-    sourceCompatibility = JavaVersion.VERSION_1_6
-    targetCompatibility = JavaVersion.VERSION_1_6
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
     compileJava {
         options.encoding = 'UTF-8'
@@ -34,12 +35,12 @@ configure(subprojects - project(':jgr-r')) {
     }
 
     task sourcesJar(type: Jar, dependsOn: classes) {
-        classifier = 'sources'
+        archiveClassifier = 'sources'
         from sourceSets.main.allSource
     }
 
     task javadocJar(type: Jar, dependsOn: javadoc) {
-        classifier = 'javadoc'
+        archiveClassifier = 'javadoc'
         from javadoc.destinationDir
     }
 
@@ -54,23 +55,22 @@ configure(subprojects - project(':jgr-r')) {
 
 project(":jgr-java") {
     dependencies {
-        compile project(":ibase")
-        compile project(":javagd")
-        compile project(":REngine")
-        compile 'com.massisframework:orange-extensions:1.3.1'
+        implementation project(":ibase")
+        implementation project(":javagd")
+        implementation project(":REngine")
+        implementation project(":rJava")
+        implementation 'com.massisframework:orange-extensions:1.3.1'
 //        compile 'net.sf.jedit-syntax:jedit-syntax:2.2.2'
     }
 
     jar {
         manifest {
-            attributes "Implementation-Version": version
+            attributes "Implementation-Version": archiveVersion
         }
     }
 
     shadowJar {
-        baseName = 'JGR'
-        classifier = null
-        version = null
+        archiveFileName = 'JGR.jar'
         dependencies {
             exclude(project(':javagd'))
             exclude(project(':rJava'))
@@ -139,9 +139,12 @@ project(":REngine") {
         }
     }
 
+    println idea.module.sourceDirs
+
     dependencies {
-        compile project(":rJava")
+        implementation project(":rJava")
     }
+
     javadoc.enabled false
     sourcesJar.enabled false
 }
@@ -170,12 +173,6 @@ project(":rJava") {
     sourcesJar.enabled false
 }
 
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
-    distributionUrl = 'https://services.gradle.org/distributions/gradle-4.1-all.zip'
-}
-
 idea {
-    targetVersion = '16'
+    targetVersion = '4'
 }
