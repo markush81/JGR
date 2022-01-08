@@ -48,7 +48,7 @@ public class JGR {
 
     public static final String SUBTITLE = "Java Gui for R";
 
-    public static final String DEVELTIME = "2003 - 2017";
+    public static final String DEVELTIME = "2003 - 2022";
 
     public static final String INSTITUTION = "RoSuDa, Univ. Augsburg";
 
@@ -585,14 +585,12 @@ public class JGR {
 
 
         if (Common.isMac()) {
-            Application macApplication = Application.getApplication();
-
             List<String> actions = Arrays.stream(Desktop.Action.values()).map(Desktop.Action::name).collect(Collectors.toList());
 
             if (actions.contains("APP_ABOUT")) {
                 Desktop.getDesktop().setAboutHandler(aboutEvent -> new AboutDialog());
             } else {
-                macApplication.setAboutHandler(aboutEvent -> new AboutDialog());
+                Application.getApplication().setAboutHandler(aboutEvent -> new AboutDialog());
             }
 
             if (actions.contains("APP_PREFERENCES")) {
@@ -602,7 +600,7 @@ public class JGR {
                     inst.setVisible(true);
                 });
             } else {
-                macApplication.setPreferencesHandler(preferencesEvent -> {
+                Application.getApplication().setPreferencesHandler(preferencesEvent -> {
                     PrefDialog inst = PrefDialog.showPreferences(null);
                     inst.setLocationRelativeTo(null);
                     inst.setVisible(true);
@@ -612,7 +610,7 @@ public class JGR {
             if (actions.contains("APP_QUIT_HANDLER")) {
                 Desktop.getDesktop().setQuitHandler((quitEvent, quitResponse) -> MAINRCONSOLE.exit());
             } else {
-                macApplication.setQuitHandler((quitEvent, quitResponse) -> MAINRCONSOLE.exit());
+                Application.getApplication().setQuitHandler((quitEvent, quitResponse) -> MAINRCONSOLE.exit());
             }
         }
 

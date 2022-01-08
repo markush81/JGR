@@ -1,5 +1,8 @@
 Change Log
 
+1.9-1   (2022-01-08)
+    o    made compatible with Java 17+
+
 1.9-0   (2021-12-30)
     o   Require JDK > 1.8
 
