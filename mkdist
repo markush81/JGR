@@ -1,5 +1,7 @@
 #!/bin/sh
-PDIR=`pwd`
+PDIR=$(pwd)
+PNAME=JGR
+VER=$(sed -n -e 's/version=\([0-9.-]\{1,\}\).*/\1/p' gradle.properties)
 
 rm -rf /tmp/${PNAME}
 mkdir /tmp/${PNAME}
@@ -8,7 +10,7 @@ cp -r . /tmp/${PNAME}
 cd /tmp/${PNAME}
 
 echo "Building package ..."
-sh gradlew build
+sh gradlew clean build
 
 echo "Creating package ..."
 cd /tmp/${PNAME}/jgr-r/src/main/
